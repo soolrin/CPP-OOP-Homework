@@ -12,13 +12,42 @@ class Phone {
 
 public:
 
-    void SetPhone(string b, string m, double size, int battery, bool disp = false) {
+    void SetBrand(string b) {
         brand = b;
+    }
+    void SetModel(string m) {
         model = m;
+    }
+    void SetScreenSize(double size) {
+        if (size < 3.5) size = 3.5;
+        if (size > 7.5) size = 7.5;
         screenSize = size;
+    }
+    void SetChargeLevel(int battery) {
+        if (battery < 0) battery = 0;
+        if (battery > 100) battery = 100;
         chargeLevel = battery;
+    }
+    void SetDisplay(bool disp) {
         display = disp;
     }
+
+    string GetBrand() const {
+        return brand;
+    }
+    string GetModel() const {
+        return model;
+    }
+    double GetScreenSize() const {
+        return screenSize;
+    }
+    int GetChargeLevel() const {
+        return chargeLevel;
+    }
+    bool GetDisplay() const {
+        return display;
+    }
+
 
     void TurnOn() {
         if (!display) {
@@ -75,12 +104,40 @@ class Lamp {
 
 public:
 
-    void SetLamp(string t, int p, string c, int b = 50, bool on = false) {
+    void SetType(string t) {
         type = t;
+    }
+    void SetPower(int p) {
+        if (p < 1) p = 1;
+        if (p > 200) p = 200;
         power = p;
-        color = c;
+    }
+    void SetBrightness(int b) {
+        if (b < 0) b = 0;
+        if (b > 100) b = 100;
         brightness = b;
-        state = on;
+    }
+    void SetColor(string c) {
+        color = c;
+    }
+    void SetState(bool s = false) {
+        state = s;
+    }
+
+    string GetType() const {
+        return type; 
+    }
+    int GetPower() const {
+        return power; 
+    }
+    int GetBrightness() const {
+        return brightness; 
+    }
+    string GetColor() const {
+        return color;
+    }
+    bool GetState() const {
+        return state; 
     }
 
     void TurnOn() {
@@ -103,7 +160,7 @@ public:
         }
     }
 
-    void SetBrightness(int b) {
+    void ChangeBrightness(int b) {
         if (b < 0) b = 0;
         if (b > 100) b = 100;
         brightness = b;
@@ -134,12 +191,41 @@ class Aquarium {
 
 public:
 
-    void SetAquarium(int v, int fCount, double temp, bool fState = false, bool lState = false) {
+    void SetVolume(int v) {
+        if (v < 1) v = 1;
+        if (v > 1000) v = 1000;
         volume = v;
-        fishCount = fCount;
-        temperature = temp;
-        filterState = fState;
-        lightState = lState;
+    }
+    void SetFishCount(int сount) {
+        if (сount < 0) сount = 0;
+        fishCount = сount;
+    }
+    void SetTemperature(double t) {
+        if (t < 10.0) t = 10.0;
+        if (t > 35.0) t = 35.0;
+        temperature = t;
+    }
+    void SetFilterState(bool state = false) {
+        filterState = state;
+    }
+    void SetLightState(bool state = false) {
+        lightState = state;
+    }
+
+    int GetVolume() const {
+        return volume;
+    }
+    int GetFishCount() const {
+        return fishCount;
+    }
+    double GetTemperature() const {
+        return temperature;
+    }
+    bool GetFilterState() const {
+        return filterState;
+    }
+    bool GetLightState() const {
+        return lightState;
     }
 
     void TurnOnFilter() {
@@ -206,12 +292,41 @@ class Treadmill {
 
 public:
 
-    void SetTreadmill(double spd = 0, double inc = 0, double dist = 0, string m = "Кардио", bool on = false) {
+    void SetSpeed(double spd = 0) {
+        if (spd < 0) spd = 0;
+        if (spd > 20) spd = 20;
         speed = spd;
+    }
+    void SetIncline(double inc = 0) {
+        if (inc < 0) inc = 0;
+        if (inc > 15) inc = 15;
         incline = inc;
+    }
+    void SetDistance(double dist = 0) {
+        if (dist < 0) dist = 0;
         distanceRun = dist;
+    }
+    void SetMode(string m = "Авто") {
         mode = m;
-        state = on;
+    }
+    void SetState(bool s = false) {
+        state = s;
+    }
+
+    double GetSpeed() const {
+        return speed; 
+    }
+    double GetIncline() const {
+        return incline; 
+    }
+    double GetDistance() const {
+        return distanceRun; 
+    }
+    string GetMode() const {
+        return mode; 
+    }
+    bool GetState() const {
+        return state; 
     }
 
     void TurnOn() {
@@ -234,14 +349,14 @@ public:
         }
     }
 
-    void SetSpeed(double spd) {
+    void ChangeSpeed(double spd) {
         if (spd < 0) spd = 0;
         if (spd > 20) spd = 20;
         speed = spd;
         cout << "Скорость установлена на " << speed << " км/ч\n";
     }
 
-    void SetIncline(double inc) {
+    void ChangeIncline(double inc) {
         if (inc < 0) inc = 0;
         if (inc > 15) inc = 15;
         incline = inc;
@@ -277,12 +392,43 @@ class Person {
 
 public:
 
-    void SetPerson(string n, int a, double h, double w, double cash = 0) {
-        name = n;
+    void SetName(string n) {
+        name = n; 
+    }
+    void SetAge(int a) {
+        if (a < 0) a = 0;
+        if (a > 120) a = 120;
         age = a;
+    }
+    void SetHeight(double h) {
+        if (h < 30) h = 30;
+        if (h > 250) h = 250;
         height = h;
+    }
+    void SetWeight(double w) {
+        if (w < 1) w = 1;
+        if (w > 200) w = 200;
         weight = w;
-        money = cash;
+    }
+    void SetMoney(double m) {
+        if (m < 0) m = 0;
+        money = m;
+    }
+
+    string GetName() const {
+        return name; 
+    }
+    int GetAge() const {
+        return age; 
+    }
+    double GetHeight() const {
+        return height; 
+    }
+    double GetWeight() const {
+        return weight; 
+    }
+    double GetMoney() const {
+        return money; 
     }
 
     void Eat(double cost, double foodWeight) {
@@ -325,7 +471,11 @@ int main()
 
     Phone phone;
 
-    phone.SetPhone("Apple", "iPhone 16 Pro Max", 6.9, 15);
+    phone.SetBrand("Apple");
+    phone.SetModel("iPhone 16 Pro Max");
+    phone.SetScreenSize(6.9);
+    phone.SetChargeLevel(15);
+    phone.SetDisplay(false);
 
     cout << "\n";
     phone.PrintInfo();
@@ -343,13 +493,16 @@ int main()
 
     Lamp lamp;
 
-    lamp.SetLamp("Настольная", 60, "Тёплый белый");
+    lamp.SetType("Настольная");
+    lamp.SetPower(60);
+    lamp.SetColor("Тёплый белый");
+    lamp.SetBrightness(70);
 
     cout << "\n";
     lamp.PrintInfo();
     cout << "\n";
     lamp.TurnOn();
-    lamp.SetBrightness(80);
+    lamp.ChangeBrightness(80);
     lamp.ChangeColor("Холодный белый");
     cout << "\n";
     lamp.PrintInfo();
@@ -360,7 +513,10 @@ int main()
 
     Aquarium aqua;
 
-    aqua.SetAquarium(50, 5, 25.0);
+    aqua.SetVolume(50);
+    aqua.SetFishCount(5);
+    aqua.SetTemperature(25.0);
+    aqua.SetFilterState();
 
     cout << "\n";
     aqua.PrintInfo();
@@ -381,15 +537,20 @@ int main()
 
     Treadmill tm;
 
-    tm.SetTreadmill();
+    tm.SetSpeed(10);
+    tm.SetIncline(5);
+    tm.SetMode("Кардио");
+    tm.SetDistance();
+    tm.SetState();
+
     cout << "\n";
     tm.PrintInfo();
     cout << "\n";
 
     tm.TurnOn();
-    tm.SetSpeed(10);
-    tm.SetIncline(5);
-    tm.Run(30);         // В минутах 
+    tm.ChangeSpeed(8);
+    tm.ChangeIncline(10);
+    tm.Run(120);             // В минутах 
     cout << "\n";
 
     tm.PrintInfo();
@@ -401,7 +562,11 @@ int main()
 
     Person person;
 
-    person.SetPerson("Мила", 25, 160, 48, 500);
+    person.SetName("Мила");
+    person.SetAge(25);
+    person.SetHeight(160);
+    person.SetWeight(48);
+    person.SetMoney(500);
 
     cout << "\n";
     person.PrintInfo();
